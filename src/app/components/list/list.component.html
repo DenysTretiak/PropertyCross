@@ -1,0 +1,13 @@
+<div class="house" *ngFor="let house of houses" (click)='openDetailsPage(house)'>
+  <div>
+      <img width="400px" [src]="house.img_url">
+      <h1>{{house.price_formatted}}</h1>
+      <p>{{house.title}}</p>
+  </div>
+</div>
+<div  *ngIf="!resultsReady" class="text-center">
+    <img class="loader" src="https://media.tenor.com/images/d6cd5151c04765d1992edfde14483068/tenor.gif">
+</div>
+<div *ngIf="noResults" class="text-center">
+    <h2>No Results...</h2> 
+</div>

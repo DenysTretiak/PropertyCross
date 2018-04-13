@@ -39,3 +39,17 @@
     background: #f7f7f9;
     padding:5px;
 }
+
+a{
+    cursor:pointer;
+}
+
+li{
+    list-style: none;
+}
+
+.disabled{
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: .65;
+}

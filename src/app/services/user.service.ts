@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class UserService {
-
-  constructor() { }
-  
+  backButton = new BehaviorSubject(JSON.parse(sessionStorage.getItem('backButton')));
+   
   makeId(): string {
     const dateNow = new Date();
     const time = dateNow.getTime();
@@ -13,7 +13,7 @@ export class UserService {
     return id;
   }
 
-  setProperties(prop:Object){
+  setProperties(prop:any, favourite?:boolean){
     let properties = this.getProperties();
     const arr = [];
     if (!properties){
@@ -21,13 +21,42 @@ export class UserService {
        sessionStorage.setItem('properties', JSON.stringify(arr));
        return;
     }
-    properties.forEach(item => arr.push(item));
+    if(favourite || favourite === false){
+      properties.pop();
+      prop.favourite = favourite;
+    }
+    properties.forEach(item => {
+      if(item.title !== prop.title){
+        arr.push(item)
+      } 
+    });
     arr.push(prop);
     sessionStorage.setItem('properties', JSON.stringify(arr));
   }
 
   getProperties(){
     return JSON.parse(sessionStorage.getItem('properties'));
+  }
+
+  setLastSearches(location:string){
+     let searches = this.getLastSearches();
+     const arr = [];
+     if(!searches){
+         arr.push(location); 
+         sessionStorage.setItem('lastSearches', JSON.stringify(arr));
+         return;
+     }
+     searches.forEach(item => arr.push(item));
+     arr.push(location);
+     sessionStorage.setItem('lastSearches', JSON.stringify(arr));
+  }
+
+  getLastSearches(){
+    return JSON.parse(sessionStorage.getItem('lastSearches'));
+  }
+
+  getFavourites(){
+    return this.getProperties().filter(prop => prop.favourite);
   }
 
 }

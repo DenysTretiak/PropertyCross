@@ -1,26 +1,39 @@
 import { Injectable } from '@angular/core';
-import { Jsonp, Http} from '@angular/http';
+import { Jsonp } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { Position } from '../interfaces/position.interface'
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ApiService {
   url:string = 'http://api.nestoria.co.uk/api?country=uk&pretty=1' +
                '&action=search_listings&encoding=json&listing_type=buy' +
-               '&page=1&number_of_results=40&place_name=';
- 
-  private searchUrl: string = 'http://api.nestoria.co.uk/api?country=uk' +
-  '&pretty=1&action=search_listings&encoding=json' +
-  '&listing_type=buy&callback=JSONP_CALLBACK';
-
-  constructor(private jsonp:Jsonp, private http:Http ) { }
+               '&callback=JSONP_CALLBACK&number_of_results=20';
+                
+  constructor(private jsonp:Jsonp) { }
   
-  getTranslate(location:string){
-     const link = this.url + location; 
-     return this.http.get(link)
-        .map(res => {
-             console.log(res.json().response.total_results) 
-             return res.json().response.listings;
-        });
-}
+  getResponse(location:string){
+     const link = `${this.url}&page=1&place_name=${location}`; 
+
+    return this.jsonp.request(link)
+                .map(res =>{
+                  return res.json().response.listings;
+                })
+  }
+
+  // getResponseWithMyLocation(){
+  //   const link = `${this.url}&page=1&centre_point=${this.location.latitude},${this.location.longitude}`;
+  //   return this.jsonp.request(link)
+  //             .map(res => res.json().response);
+  // }
+
+  //  getCurrentPossition(){
+  //   if(navigator.geolocation){
+  //     navigator.geolocation.getCurrentPosition(position => {
+  //       this.location = position.coords;
+  //     });
+  //  }
+  // }
+
+  
 }

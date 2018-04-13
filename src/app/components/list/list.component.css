@@ -14,3 +14,11 @@
 img{
     width:100%;
 }
+
+.loader{
+    width:50px;
+}
+
+.text-center{
+    text-align: center;
+}

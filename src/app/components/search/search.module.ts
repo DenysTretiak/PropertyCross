@@ -10,7 +10,6 @@ import { ReactiveFormsModule,  FormControl, FormsModule } from '@angular/forms';
     FormsModule,
   ],
   declarations: [SearchComponent],
-  providers: [],
   exports:[SearchComponent]
 })
 export class SearchModule { }

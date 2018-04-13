@@ -1,0 +1,12 @@
+.container{
+    display: flex;
+    justify-content: center;
+    position:relative;
+}
+
+.star-button{
+    position: absolute;
+    top:20px;
+    right:20px;
+    cursor: pointer;
+}

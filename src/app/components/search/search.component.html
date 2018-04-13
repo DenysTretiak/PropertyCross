@@ -1,0 +1,15 @@
+<p>
+    Use the form below to search for houses to buy. You can search by place-name, postcode, or click 'My location', to search in your current location!
+</p>
+<form (ngSubmit)="onSubmit(text)">
+  <input [(ngModel)] = "text" name="text" type="text" class="form-control">
+  <input type="submit" class="btn" [ngClass]="{disabled:!text}" value="Go">
+  <a class="btn" (click)="searchMyCoord()">My location</a>   
+</form>
+
+<p>Recent searhes:</p>
+<div class="container">
+    <ul *ngFor = "let item of searchList">
+      <li><a (click) = "searchHouses(item)">{{item}}</a></li>
+    </ul>
+</div>

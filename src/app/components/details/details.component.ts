@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service';
+import { UserService } from '../../services/user.service';
 import { ActivatedRoute } from '@angular/router';
+import { House } from '../../interfaces/house.interface'
 
 
 @Component({
@@ -9,8 +10,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit {
-  house:Object;
-  houses:Object[];
+  house:House;
+  houses:House[];
   id:string;
 
   constructor(private user: UserService,
@@ -23,6 +24,13 @@ export class DetailsComponent implements OnInit {
         this.house = item;
       }
     })
+  }
+  switchFavourite(){
+    if(!this.house.favourite){
+      this.user.setProperties(this.house, true);
+      return;
+    }
+    this.user.setProperties(this.house, false);
   }
 
 }

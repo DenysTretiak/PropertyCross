@@ -1,7 +1,0 @@
-<div class="house" *ngFor="let house of houses | async" (click)='openDetailsPage(house)'>
-  <div class="property-wrap">
-      <img width="400px" [src]="house.img_url">
-      <h1>{{house.price_formatted}}</h1>
-      <p>{{house.title}}</p>
-  </div>
-</div>
