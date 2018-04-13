@@ -1,0 +1,14 @@
+<div class="text-center">
+  <div class="col-lg-6 col-xs-12">
+      <img width="500px" [src]="house.img_url" [alt]="house.title">
+  </div>
+  <div class="col-lg-6 col-xs-12 text-left property-transcription-wrap">
+    <div class="property-transcription">
+      <h1>Price: {{house.price_formatted}}</h1>
+      <p>{{house.title}}</p>
+      <div *ngIf="+house.bedroom_number > 0">Bedrooms: {{house.bedroom_number}}</div>
+      <div *ngIf="+house.bathroom_number > 0">Bathrooms: {{house.bathroom_number}}</div> 
+      <div>{{house.summary}}</div>
+    </div>
+  </div>
+</div>
