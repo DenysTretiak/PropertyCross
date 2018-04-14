@@ -54,22 +54,24 @@ export class ListComponent implements OnInit {
   }
 
   openDetailsPage(house:any){
-    
-    const properties = this.user.getProperties()
+    const properties = this.user.getProperties();
+    let updateProperties = true;
+
     if(properties){
-      let counter = true;
       properties.forEach(item =>{
         if (item.title === house.title){
             this.router.navigate([`/details/${item.id}`]);
-            counter = false;
+            updateProperties = false;
         }
       });
     }
-      if (!house.id){
-             house.id = this.user.makeId();
-             house.favourite = false;
-             this.user.setProperties(house);
-             this.router.navigate([`/details/${house.id}`]);
-         }  
+    
+    if(updateProperties){
+        house.id = this.user.makeId();
+        house.favourite = false;
+        this.user.setProperties(house);
+        this.router.navigate([`/details/${house.id}`]);
+  }
+       
   }
 }

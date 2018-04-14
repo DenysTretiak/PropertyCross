@@ -22,7 +22,11 @@ export class UserService {
        return;
     }
     if(favourite || favourite === false){
-      properties.pop();
+      properties.forEach(item => {
+        if(item.title !== prop.title){
+          arr.splice(arr.indexOf(item), 1);
+        } 
+      });
       prop.favourite = favourite;
     }
     properties.forEach(item => {
@@ -56,6 +60,7 @@ export class UserService {
   }
 
   getFavourites(){
+    if (!this.getProperties()) return;
     return this.getProperties().filter(prop => prop.favourite);
   }
 
