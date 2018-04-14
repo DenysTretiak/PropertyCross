@@ -1,17 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SearchComponent } from './components/search/search.component';
-import { ListComponent } from './components/list/list.component';
-import { DetailsComponent } from './components/details/details.component';
-
 
 const appRoutes:Routes = [
     {path:'', redirectTo: 'search', pathMatch: 'full'},
-    {path:'search', component:SearchComponent},
-    {path:'list', component:ListComponent},
-    {path:'list/:favourites', component:ListComponent},
-    {path:'details/:id',component:DetailsComponent}
+    {
+      path:'search', 
+      loadChildren:'app/components/search/search.module#SearchModule'
+    },
+    {
+      path:'list', 
+      loadChildren:'app/components/list/list.module#ListModule'
+    },
+    {
+        path:'list/:favourites',
+        loadChildren:'app/components/list/list.module#ListModule'
+    },
+    {
+        path:'details/:id',
+        loadChildren:'app/components/details/details.module#DetailsModule'
+    }
 ]
 
 @NgModule({
