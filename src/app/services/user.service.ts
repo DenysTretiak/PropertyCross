@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
+
 @Injectable()
 export class UserService {
   backButton = new BehaviorSubject(JSON.parse(sessionStorage.getItem('backButton')));
-   
+  
   makeId(): string {
     const dateNow = new Date();
     const time = dateNow.getTime();
@@ -63,5 +64,14 @@ export class UserService {
     if (!this.getProperties()) return;
     return this.getProperties().filter(prop => prop.favourite);
   }
+
+  // getHousesList(location:string, page?:number){
+  //     let total_results:number = 0;
+  //     this.api.getResponse(location, '1')
+  //              .subscribe(item => {
+  //               console.log(item); 
+  //               total_results = item.total_results}); 
+  //     return this.api.getResponse(location)
+  // }
 
 }

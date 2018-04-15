@@ -1,3 +1,6 @@
+<div class="number-of-property" *ngIf="resultsReady && houses.length > 0">
+    {{houses.length}} of {{numberHouses}}
+ </div>
 <div class="house" *ngFor="let house of houses" (click)='openDetailsPage(house)'>
   <div>
       <img width="400px" [src]="house.img_url">
@@ -10,4 +13,10 @@
 </div>
 <div *ngIf="noResults" class="text-center">
     <h2>No Results...</h2> 
+</div>
+<div class="text-center">
+    <button *ngIf="resultsReady && houses.length > 0" 
+            class="btn" 
+            (click)="getMoreProperty()">
+             Get more</button>
 </div>
