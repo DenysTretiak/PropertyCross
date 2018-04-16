@@ -65,13 +65,4 @@ export class UserService {
     return this.getProperties().filter(prop => prop.favourite);
   }
 
-  // getHousesList(location:string, page?:number){
-  //     let total_results:number = 0;
-  //     this.api.getResponse(location, '1')
-  //              .subscribe(item => {
-  //               console.log(item); 
-  //               total_results = item.total_results}); 
-  //     return this.api.getResponse(location)
-  // }
-
 }

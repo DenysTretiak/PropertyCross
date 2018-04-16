@@ -31,7 +31,6 @@ export class SearchComponent implements OnInit{
     this.api.getResponse(location)
              .subscribe(item=> {
                     if(item.listings.length>0){
-                      console.log(item);
                       this.user.setLastSearches(location);
                     }      
               });
