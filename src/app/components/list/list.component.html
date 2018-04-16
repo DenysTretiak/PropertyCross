@@ -1,4 +1,4 @@
-<div class="number-of-property" *ngIf="resultsReady && houses.length > 0">
+<div class="number-of-property" *ngIf="resultsReady && houses && houses.length > 0">
     {{houses.length}} of {{numberHouses}}
  </div>
 <div class="house" *ngFor="let house of houses" (click)='openDetailsPage(house)'>
@@ -15,7 +15,7 @@
     <h2>No Results...</h2> 
 </div>
 <div class="text-center">
-    <button *ngIf="resultsReady && houses.length > 0" 
+    <button *ngIf="resultsReady && houses && houses.length > 0" 
             class="btn" 
             (click)="getMoreProperty()">
              Get more</button>

@@ -53,6 +53,19 @@ export class ListComponent implements OnInit {
         this.houses = this.user.getFavourites();
         this.setNoResults(this.houses);
       }
+      if(param.myLocation){
+        this.api.getCurrentPossition();
+        this.api.getResponseWithMyLocation()
+                .map(item => {
+                  this.numberHouses = item.total_results;
+                  return item.listings
+                })
+                .subscribe(item=>{
+                  this.houses = item;
+                  this.resultsReady = true;
+                  this.setNoResults(item);
+                })
+      }
     });
   }
 

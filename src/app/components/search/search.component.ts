@@ -30,7 +30,8 @@ export class SearchComponent implements OnInit{
     }
     this.api.getResponse(location)
              .subscribe(item=> {
-                    if(item.length>0){
+                    if(item.listings.length>0){
+                      console.log(item);
                       this.user.setLastSearches(location);
                     }      
               });
@@ -38,6 +39,10 @@ export class SearchComponent implements OnInit{
 
   searchHouses(item:string){
        this.router.navigate(['/list', {location:item}] );
+  }
+
+  searchMyCoord(){
+    this.router.navigate(['/list', {myLocation:'myLocation'}]);
   }
 
 
